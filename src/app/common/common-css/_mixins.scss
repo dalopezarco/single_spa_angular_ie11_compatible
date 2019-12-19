@@ -1,0 +1,100 @@
+// Media queries
+@mixin extra-large { @media (max-width: 1439px) { @content; } }
+@mixin large { @media (max-width: 1279px) { @content; } }
+@mixin medium { @media (max-width: 959px) { @content; } }
+@mixin medium-small { @media (max-width: 719px) { @content; } }
+@mixin small { @media (max-width: 479px) { @content; } }
+
+// Template breakpoints
+@mixin template-breakpoints {
+  max-width: 1376px;
+  @include extra-large {
+    max-width: 1232px;
+  }
+  @include large {
+    max-width: 928px;
+  }
+  @include medium {
+    max-width: 100%;
+  }
+}
+
+// RTL
+@mixin rtl { [dir="rtl"] & { @content; } }
+
+// Messages
+@mixin message {
+    display: block;
+    font-size: ms(-2);
+    padding: sp(1) 0;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    line-height: sp(2);
+}
+
+@mixin error-message {
+    @include message;
+    color: $color-alert;
+}
+
+@mixin help-message {
+    @include message;
+    color: $color-stone;
+}
+
+// Focus
+@mixin focus {
+    box-shadow: 0 0 8px rgba($color-highlight,.3);
+}
+
+@mixin focus-success {
+    box-shadow: 0 0 8px rgba($color-success,.3);
+}
+
+@mixin focus-error {
+    box-shadow: 0 0 8px rgba($color-alert,.3);
+}
+
+// Loading state (based on 2 colors)
+@mixin loader {
+    &::before,
+    &::after {
+        background-color: transparent;
+        bottom: 0;
+        content: '';
+        height: 0;
+        position: absolute;
+        width: 100%;
+        transition: height .2s ease-in-out;
+    }
+}
+
+@mixin loader--active($c1, $c2) {
+    &::before,
+    &::after {
+        height: sp(0.5);
+    }
+
+    &::before {
+        background-color: $c1;
+        left: 0;
+    }
+
+    &::after {
+        animation: loader 1s infinite linear;
+        background-color: $c2;
+        left: -100%;
+    }
+
+    @keyframes loader { from { left: -100% } to { left: 100% } }
+}
+
+// Miscellaneous
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

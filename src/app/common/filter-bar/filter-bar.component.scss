@@ -1,0 +1,56 @@
+.filter-bar {
+  margin: 16px;
+  border: 1px solid #e5e4e2 !important ;
+
+  &__header {
+    min-height: 32px;
+    line-height: 32px;
+    padding: 0 16px;
+    text-align: right;
+
+  }
+
+  &__body {
+    padding: 16px;
+
+    & div {
+      margin-bottom: sp(2);
+
+      &:last-child {
+        margin-bottom: 0;
+
+        raet-button {
+          margin-top: sp(4)-3;
+        }
+
+      }
+    }
+
+    & .button--filter {
+      display: inline-block;
+      margin-bottom: sp(1) + 2;
+    }
+
+    .filter__button {
+      text-align: right;
+      line-height: 60px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-bar {
+    &__body {
+      & div {
+        &:last-child {
+          button {
+            margin-top: 0;
+          }
+        }
+      }
+      & .button--filter {
+        margin-top: 0;
+      }
+    }
+  }
+}

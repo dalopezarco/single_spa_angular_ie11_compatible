@@ -1,0 +1,40 @@
+// Branding
+$color-brand: #00A7B4;
+$color-brand-dark: mix($color-brand, black, 80%);
+$color-brand-light: mix($color-brand, white, 75%);
+$color-brand-vivid: mix($color-brand, white, 45%);
+$color-brand-shade: mix($color-brand, white, 15%);
+
+// Highlight
+$color-highlight: #0099CC;
+$color-highlight-dark: mix($color-highlight, black, 80%);
+$color-highlight-light:  mix($color-highlight, white, 75%);
+$color-highlight-vivid: mix($color-highlight, white, 45%);
+$color-highlight-shade: mix($color-highlight, white, 15%);
+
+// Neutral
+$color-white: #FFFFFF;
+$color-light-gray: #F6F7F8;
+$color-platinum: #ECEFF1;
+$color-silver: #CFD8DC;
+$color-stone: #B0BEC5;
+$color-dusk: #90A4AE;
+$color-hemlok: #78909C;
+$color-calypso: #607D8B;
+$color-jasper: 	#546E7A;
+$color-old-silver: #455A64;
+$color-raven: #37474F;
+$color-black: #3A3A3A;
+
+// States
+$color-success: #38C968;
+$color-success-light: mix($color-success, white, 10%);
+$color-alert: #E75B39;
+$color-alert-light: mix($color-alert, white, 10%);
+$color-warning: #FEBA1B;
+$color-warning-light: mix($color-warning, white, 10%);
+
+// Levels
+$color-empty-level: #BCE85B;
+$color-medium-level: #6ECB70;
+$color-full-level: #1DB954;

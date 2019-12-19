@@ -1,0 +1,7 @@
+@import '../../common/common-css/common.scss';
+
+.yfo-timeline {
+  @include medium {
+    padding: 40px;
+  }
+}

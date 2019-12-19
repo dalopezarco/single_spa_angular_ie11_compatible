@@ -1,0 +1,11 @@
+<div class="filter-bar">
+  <div class="filter-bar__header">
+    <div class="toggle" (click)="switchOpened()">
+      <a *ngIf="!(opened$ | async)" class="raet-link">{{ 'yfo.edmodm.ShowFilter' | translate }}</a>
+      <a *ngIf="opened$ | async" class="raet-link">{{ 'yfo.edmodm.HideFilter' | translate }}</a>
+    </div>
+  </div>
+  <div class="filter-bar__body" *ngIf="opened$ | async">
+    <ng-content></ng-content>
+  </div>
+</div>

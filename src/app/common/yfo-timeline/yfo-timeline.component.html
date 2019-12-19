@@ -1,0 +1,19 @@
+<div class="yfo-timeline-step-container" data-raet-id="" *ngFor="let element of data">
+  <div class="yfo-timeline-step">
+    <yfo-timeline-icon [status]="element.status"></yfo-timeline-icon>
+    <div class="yfo-timeline-step__content">
+      <div class="yfo-timeline-step-header">
+        <div class="yfo-timeline-step-header__content">
+          <div class="yfo-timeline-step-header__title" data-raet-id="">{{ element.title }}</div>
+        </div>
+      </div>
+      <div class="raet-notification raet-notification--notification is-visible" *ngIf="(element.messages.length > 0)">
+        <ul class="raet-notification__list yfo-timeline-step-list">
+          <li *ngFor="let message of element.messages">
+            {{ message }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

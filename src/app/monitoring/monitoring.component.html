@@ -1,0 +1,95 @@
+<div class="card__header">
+  <h2 class="card__title" data-raet-id="TableTitle">
+    {{ 'yfo.younifier.PayrollMonitoring' | translate }}
+  </h2>
+</div>
+<zoom-notification *ngIf="errorMessage | async" [mode]="notificationMode" [isClosable]="true" raetId="AddErrorNotification">
+  <span attr.data-raet-id="NotificationText">
+    {{ 'yfo.common.GenericSystemErrorMessage' | translate }}
+  </span>
+</zoom-notification>
+<app-filter-bar [opened]="showFilters | async">
+  <form [formGroup]="filter" zoomForm raet-form>
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__cell--S">
+          <zoom-form-field raetId="MonitoringFilterPersonNumber" label="{{ 'yfo.younifier.SearchPersonNumber' | translate }}">
+            <input zoomInput type="text" formControlName="personNumber" />
+            <ng-container errorRequiredMessage>
+              {{ 'personNumber' | translate }}
+            </ng-container>
+          </zoom-form-field>
+        </div>
+        <div class="grid__cell--S">
+          <zoom-form-field raetId="MonitoringFilterPersonNumberDateFrom" label="{{ 'yfo.younifier.DateFrom' | translate }}">
+            <input zoomInput type="text" formControlName="dateFrom" zoomPlaceholder="mm/dd/yy"
+              *zoomInputDate="dateFromValue; event: clickDateFromValue">
+          </zoom-form-field>
+        </div>
+        <div class="grid__cell--S">
+          <zoom-form-field raetId="MonitoringFilterPersonNumberDateTo" label="{{ 'yfo.younifier.DateTo' | translate }}">
+            <input zoomInput type="text" formControlName="dateTo" zoomPlaceholder="mm/dd/yy"
+              *zoomInputDate="dateToValue; event: clickDateToValue">
+          </zoom-form-field>
+        </div>
+      </div>
+
+      <div class="grid__row">
+        <div class="grid__cell--S">
+          <zoom-form-field raetId="reactiveExampleSelectSingle3" label="{{ 'yfo.younifier.EventStatus' | translate }}">
+            <zoom-form-select-single zoomSelect formControlName="eventStatus" [dataSource]="filterStatus">
+              <ng-container select-label>{{ 'yfo.younifier.EventStatus' | translate }}</ng-container>
+              <ng-container select-text>{{ 'yfo.younifier.AllStatuses' | translate }}</ng-container>
+              <ng-container cancel-text>{{ 'select.selectSingleCancelText' | translate }}</ng-container>
+            </zoom-form-select-single>
+          </zoom-form-field>
+        </div>
+
+        <div class="grid__cell--S">
+          <zoom-form-field raetId="MonitoringFilterPersonNumber" label="{{ 'yfo.younifier.SystemName' | translate }}">
+            <zoom-form-select-single zoomSelect formControlName="systemName" [dataSource]="filterSystemName">
+              <ng-container select-label>{{ 'yfo.younifier.SystemName' | translate }}</ng-container>
+              <ng-container select-text>{{ 'yfo.younifier.AllSystems' | translate }}</ng-container>
+              <ng-container cancel-text>{{ 'select.selectSingleCancelText' | translate }}</ng-container>
+            </zoom-form-select-single>
+          </zoom-form-field>
+        </div>
+
+        <div class="grid__cell--S">
+          <zoom-form-field raetId="MonitoringFilterPersonNumber" label="{{ 'yfo.younifier.EventType' | translate }}">
+            <zoom-form-select-single zoomSelect formControlName="eventType" [dataSource]="filterEventType">
+              <ng-container select-label>{{ 'yfo.younifier.EventType' | translate }}</ng-container>
+              <ng-container select-text>{{ 'yfo.younifier.AllEventTypes' | translate }}</ng-container>
+              <ng-container cancel-text>{{ 'select.selectSingleCancelText' | translate }}</ng-container>
+            </zoom-form-select-single>
+          </zoom-form-field>
+        </div>
+      </div>
+
+      <div class="grid__cell--S">
+        <zoom-button raetId="largeButton" type="{{ type.button }}" (actionEvent)="applyFilter()">{{
+          'yfo.younifier.Apply' | translate
+        }}</zoom-button>
+      </div>
+    </div>
+  </form>
+</app-filter-bar>
+<zoom-table
+  raetId="processesTable"
+  [dataSource]="tableData"
+  [displayedColumns]="displayedColumns"
+  *ngIf="tableData"
+  (clickRow)="handleClickRow($event)"
+>
+</zoom-table>
+<zoom-table-empty raetId="processesEmpty" *ngIf="(length$ | async) == 0 && !(loading$ | async)">
+  {{ 'yfo.younifier.NoProcessesToShow' | translate }}
+</zoom-table-empty>
+<div class="loading-indicator" *ngIf="loading$ | async">
+  <zoom-loading size="{{ size.small }}" color="{{ color.brand }}" raetId="zoomLoadingBigNoText"> </zoom-loading>
+</div>
+
+<zoom-paginator #zoom [length]="length$ | async" [pageSize]="pageSize" raetId="DemoPaginator2" (pageEvent)="onPaginate($event)">
+  <span pageText> {{ 'yfo.younifier.Page' | translate }} </span>
+  <span ofText> {{ 'yfo.younifier.Of' | translate }} </span>
+</zoom-paginator>

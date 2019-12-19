@@ -1,0 +1,12 @@
+@import "~@zoomui/basics/src/lib/sass/tools/_functions";
+@import "~@zoomui/basics/src/lib/sass/settings/_colors";
+
+.header-svg-icon {
+    width: sp(4);
+    height: sp(4);
+    cursor: pointer;
+    fill: $color-jasper;
+    &:hover {
+        fill: $color-highlight;
+    }
+}

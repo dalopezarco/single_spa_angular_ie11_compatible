@@ -1,0 +1,13 @@
+<zoom-header raetId="RaetHeader" class="main-header">
+  <span class="main-header__platform-name" platformName>
+    <hrcb-back-button></hrcb-back-button>
+  </span>
+
+  <a class="main-header__link" logo href="/home">
+    <img class="main-header__logo" [src]="'images/raetimg.png' | assetUrl" alt="" />
+  </a>
+
+  <hrcb-main-menu [menu]="menu" [menusLoaded]="menusLoaded"></hrcb-main-menu>
+
+  <span subBarText>{{ title | translate }}</span>
+</zoom-header>

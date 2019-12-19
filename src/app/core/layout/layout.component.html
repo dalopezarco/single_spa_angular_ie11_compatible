@@ -1,0 +1,13 @@
+<zoom-page-template>
+    <ng-container zoomHeader>
+        <hrcb-header [title]="headerTitle" [menu]="menu" [menusLoaded]="menusLoaded"></hrcb-header>
+    </ng-container>
+
+    <ng-container zoomMain>
+        <router-outlet></router-outlet>
+    </ng-container>
+
+    <ng-container zoomFooter>
+        <hrcb-footer [policyLink]="footerPolicyLink" [disclosurPolicyText]="footerDisclosurPolicyText"></hrcb-footer>
+    </ng-container>
+</zoom-page-template>

@@ -1,0 +1,107 @@
+<div class="card__header">
+  <h2 class="card__title">{{ 'yfo.younifier.GeneralDetails' | translate }}</h2>
+</div>
+<zoom-notification *ngIf="errorMessage | async" [mode]="notificationMode" [isClosable]="true" raetId="AddErrorNotification">
+  <span attr.data-raet-id="NotificationText">
+    {{ "yfo.common.GenericSystemErrorMessage" | translate }}
+  </span>
+</zoom-notification>
+
+<div class="grid__row">
+  <div class="grid__cell--M">
+    <zoom-output label="{{ 'yfo.younifier.Person' | translate }}" raetId="Person" [emptyOutput]="emptyOutput"> </zoom-output>
+  </div>
+  <br />
+  <div class="grid__cell--M">
+    <zoom-output label="{{ 'yfo.younifier.Company' | translate }}" raetId="Company" [emptyOutput]="emptyOutput"> </zoom-output>
+  </div>
+  <br />
+</div>
+
+<div class="grid__row">
+  <div class="grid__cell--M">
+    <zoom-output label="{{ 'yfo.younifier.Contract' | translate }}" raetId="Contract" [emptyOutput]="emptyOutput"> </zoom-output>
+  </div>
+  <br />
+  <div class="grid__cell--M">
+    <zoom-output label="{{ 'yfo.younifier.PayAdministration' | translate }}" [emptyOutput]="emptyOutput" raetId="PayAdministration">
+    </zoom-output>
+  </div>
+  <br />
+</div>
+
+<div class="grid__row">
+  <div class="grid__cell--M">
+    <zoom-output label="{{ 'yfo.younifier.SystemName' | translate }}" [emptyOutput]="emptyOutput" raetId="SystemName"> </zoom-output>
+  </div>
+  <br />
+  <div class="grid__cell--M">
+    <zoom-output label="{{ 'yfo.younifier.Status' | translate }}" [emptyOutput]="emptyOutput" raetId="Status"> </zoom-output>
+  </div>
+  <br />
+</div>
+
+<div class="card__header">
+  <h2 class="card__title">{{ 'yfo.younifier.ActionDetails' | translate }}</h2>
+</div>
+
+<ng-container *ngIf="showAction$ | async">
+  <yfo-timeline [data]="actions"></yfo-timeline>
+</ng-container>
+
+<form [formGroup]="form" novalidate zoomForm>
+  <ng-container *ngIf="showUpdateEventSection$ | async">
+    <div class="card" name="updateEvent">
+      <div id="updateEvent" class="anchor"></div>
+      <div class="card__header">
+        <h2 class="card__title">{{ 'yfo.younifier.UpdateEventTitle' | translate }}</h2>
+      </div>
+      <zoom-form-field raetId="updateEventTextArea " label="{{ 'yfo.edmodm.AddComment' | translate }}">
+        <textarea zoomTextarea formControlName="updateEventTextArea"></textarea>
+      </zoom-form-field>
+
+      <div class="grid__row">
+        <zoom-button
+          raetId="updateEventConfirm"
+          type="{{ type.button }}"
+          (actionEvent)="updateEvent()"
+          [isDisabled]="!(updateEventText$ | async)"
+          >{{ 'yfo.edmodm.Confirm' | translate }}</zoom-button
+        >
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="showResend$ | async">
+    <yfo-show cardTitle="yfo.younifier.ResendEventTitle">
+      <zoom-form-field raetId="resendEventTextArea " label="{{ 'yfo.edmodm.AddComment' | translate }}">
+        <textarea zoomTextarea formControlName="resendEventTextArea"></textarea>
+      </zoom-form-field>
+
+      <div class="grid__row">
+        <zoom-button
+          raetId="resendEventConfirm"
+          type="{{ type.button }}"
+          (actionEvent)="resendEvent()"
+          [isDisabled]="!(resendEventText$ | async)"
+          >{{ 'yfo.edmodm.Confirm' | translate }}</zoom-button
+        >
+      </div>
+    </yfo-show>
+  </ng-container>
+
+  <yfo-show cardTitle="yfo.younifier.TechnicalDetails">
+    <zoom-output label="{{ 'yfo.younifier.TrackingId' | translate }}" [emptyOutput]="emptyOutput" raetId="TrackingId"> </zoom-output>
+    <br />
+    <zoom-output label="{{ 'yfo.younifier.TenantId' | translate }}" [emptyOutput]="emptyOutput" raetId="TenantId"> </zoom-output>
+    <br />
+    <zoom-output label="{{ 'yfo.younifier.PersonId' | translate }}" [emptyOutput]="emptyOutput" raetId="PersonId"> </zoom-output>
+    <br />
+    <zoom-output label="{{ 'yfo.younifier.ContractId' | translate }}" [emptyOutput]="emptyOutput" raetId="ContractId"> </zoom-output>
+    <br />
+  </yfo-show>
+</form>
+
+<ng-template #emptyOutput>
+  {{ 'yfo.common.NotSpecified' | translate }}
+</ng-template>

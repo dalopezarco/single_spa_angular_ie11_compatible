@@ -1,0 +1,12 @@
+<div class="card" name="resendEvent">
+  <div id="resendEvent" class="anchor"></div>
+  <div class="card__header">
+    <h2 class="card__title">{{ cardTitle | translate }}</h2>
+    <div class="card__options">
+      <a (click)="switchView()" class="raet-link">{{ linkText | translate }}</a>
+    </div>
+  </div>
+  <ng-container *ngIf="show">
+    <ng-content></ng-content>
+  </ng-container>
+</div>
